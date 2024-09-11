@@ -7,7 +7,7 @@ st.write(
     "Test Drive Diabetes App"
 )
 
-pregnancy = st.slider("Pregnancies",0,17,(0,17))
+Pregnancies = st.slider("Pregnancies",0,17,(0,17))
 Glucose = st.slider("Glucose",0,199,(0,199))
 BloodPressure = st.slider("BloodPressure",0,122,(0,122))
 SkinThickness = st.slider("SkinThickness",0,99,(0,99))
@@ -24,5 +24,9 @@ file_path = 'Model/knn_dt_diabetes_model.pkl'
 with open(file_path,'rb') as file:
     model = pickle.load(file)
 st.write("load success")
+
+prediction = model.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
+
+st.write("Prediction = ",prediction)
 
 #result = loaded_model.score(, y_test)
