@@ -101,3 +101,8 @@ with open('knn_dt_diabetes_model.pkl', 'wb') as f:
     pickle.dump((KNN, DT), f)
     
 print("Model KNN dan DT berhasil Disimpan")
+
+file_path = '../Model/knn_dt_diabetes_model.pkl'
+with open(file_path,'rb') as file:
+    model = pickle.load(file)
+print("load success")
