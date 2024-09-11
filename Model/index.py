@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import csv
 
-filename = 'diabetes.csv'
+filename = '../Data/diabetes.csv'
 from sklearn.model_selection import train_test_split
 
 diabetes_data = pd.read_csv(filename)
