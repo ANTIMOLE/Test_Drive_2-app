@@ -47,4 +47,4 @@ if os.path.exists(model_path):
     except Exception as e:
         st.error("Terjadi kesalahan: {e}")
 else:
-    print("File 'rf_diabetes_model.pkl' tidak ditemukan di direktori")
+    st.write("File 'rf_diabetes_model.pkl' tidak ditemukan di direktori")
