@@ -18,7 +18,7 @@ if os.path.exists(model_path):
         
         with open(model_path_2,'rb') as file:
             load_model_2 = pickle.load(file)
-            _
+            
         rf_model = loaded_model[0]
         knn_model = load_model_2[0]
         dt_model = load_model_2[1]
