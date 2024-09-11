@@ -9,7 +9,7 @@ model_directory = r'D:\Documents\SEMESTER 5\PMPM\PY\Dataset_Diabetes\Model'
 
 # Gunakan os.path.join() untuk menggabungkan direktori dan file model pickle
 model_path = os.path.join(model_directory, 'rf_diabetes_model.pkl')
-
+st.write("TEST")
 # Periksa apakah file ada di direktori yang ditentukan
 if os.path.exists(model_path):
     try:
