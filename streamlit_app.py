@@ -21,7 +21,7 @@ import os
 file_path = 'Model/knn_dt_diabetes_model.pkl'
 st.write("File path exists:", os.path.exists(file_path))
 
-file_path = 'Model/knn_dt_diabetes_model.pkl'
+file_path = 'Model/rf_diabetes_model.pkl'
 with open(file_path,'rb') as file:
     model = pickle.load(file)
 st.write("load success")
