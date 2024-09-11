@@ -25,7 +25,7 @@ freq.plot(kind='bar')
 
 X = diabetes_data.drop('Outcome', axis=1)
 
-y = diabetes_data.target
+y = diabetes_data.Outcome
 
 
 #TRAINING
@@ -55,7 +55,22 @@ KNN.fit(X_train, y_train)
 
 DT.fit(X_train, y_train)
 
-X_new = np.array([[4.4, 2.1, 2.2, 4.1]])
+
+#KODE GPT BUAT FEATURE NAME
+#import pandas as pd
+
+# # Create a DataFrame with feature names
+# feature_names = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
+# X_new = pd.DataFrame([[6, 148, 72, 35, 0, 33.6, 0.627, 50]], columns=feature_names)
+
+# # Predict using models
+# knn_predict = KNN.predict(X_new)
+# dt_predict = DT.predict(X_new)
+# print("Label prediksi KNN:", knn_predict)
+# print("Label prediksi Decision Tree:", dt_predict)
+
+
+X_new = np.array([[6, 148, 72, 35, 0, 33.6, 0.627, 50]])
 
 print("X_new yang akan diprediksi", X_new.shape)
 
@@ -82,7 +97,7 @@ print("Akurasi Model DT perbandingan prediksi vs label ", round(DT.score(X_test,
 
 import pickle 
 
-with open('knn_dt_iris_model.pkl', 'wb') as f:
+with open('knn_dt_diabetes_model.pkl', 'wb') as f:
     pickle.dump((KNN, DT), f)
     
 print("Model KNN dan DT berhasil Disimpan")
