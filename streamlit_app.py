@@ -23,8 +23,6 @@ st.write("File path exists:", os.path.exists(file_path))
 file_path = 'Model/knn_dt_diabetes_model.pkl'
 with open(file_path,'rb') as file:
     model = pickle.load(file)
-    
-st.write(model)
-
+st.write("load success")
 
 #result = loaded_model.score(, y_test)
