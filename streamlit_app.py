@@ -16,7 +16,7 @@ DiabetesPedigreeFunction = st.slider("DiabetesPedigreeFunction",0.078,2.42,(0.07
 Age = st.slider("Age",21,81,(0,81))
 
 
-file_path = '../Model/knn_dt_diabetes_model.pkl'
+file_path = 'Model/knn_dt_diabetes_model.pkl'
 with open(file_path,'rb') as file:
     model = pickle.load(file)
     
