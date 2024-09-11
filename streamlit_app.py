@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import pickle
 import os
 
@@ -25,7 +26,9 @@ with open(file_path,'rb') as file:
     model = pickle.load(file)
 st.write("load success")
 
-prediction = model.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
+p_model = model[0]
+
+prediction = p_model.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
 
 st.write("Prediction = ",prediction)
 
