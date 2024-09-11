@@ -3,6 +3,7 @@ import pandas as pd
 import pickle
 import os
 
+st.write("TEST")
 #load model
 model_directory = r'D:\Documents\SEMESTER 5\PMPM\PY\Dataset_Diabetes\Model'
 
