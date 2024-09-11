@@ -4,7 +4,7 @@ import pickle
 import os
 
 #load model
-model_directory = r'D:\models' ##diisi dengan path folder dimana file model berada
+model_directory = r'D:\Documents\SEMESTER 5\PMPM\PY\Dataset_Diabetes\Model\rf_diabetes_model.pkl'
 
 # Gunakan os.path.join() untuk menggabungkan direktori dan file model pickle
 model_path = os.path.join(model_directory, 'Model/rf_diabetes_model.pkl')
