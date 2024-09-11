@@ -3,33 +3,47 @@ import pandas as pd
 import pickle
 import os
 
-st.title("🎈 Diabetes APP")
-st.write(
-    "Test Drive Diabetes App"
-)
+#load model
+model_directory = r'D:\models' ##diisi dengan path folder dimana file model berada
 
-Pregnancies = st.slider("Pregnancies",0,17,(0,17))
-Glucose = st.slider("Glucose",0,199,(0,199))
-BloodPressure = st.slider("BloodPressure",0,122,(0,122))
-SkinThickness = st.slider("SkinThickness",0,99,(0,99))
-Insulin = st.slider("Insulin",0,846,(0,846))
-BMI = st.slider("BMI",0.0,67.1,(0.0,67.1))
-DiabetesPedigreeFunction = st.slider("DiabetesPedigreeFunction",0.078,2.42,(0.078,2.42))
-Age = st.slider("Age",21,81,(0,81))
+# Gunakan os.path.join() untuk menggabungkan direktori dan file model pickle
+model_path = os.path.join(model_directory, 'Model/rf_diabetes_model.pkl')
 
-import os
-file_path = 'Model/knn_dt_diabetes_model.pkl'
-st.write("File path exists:", os.path.exists(file_path))
-
-file_path = 'Model/rf_diabetes_model.pkl'
-with open(file_path,'rb') as file:
-    model = pickle.load(file)
-st.write("load success")
-
-p_model = model[0]
-
-prediction = p_model.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
-
-st.write("Prediction = ",prediction)
-
-#result = loaded_model.score(, y_test)
+# Periksa apakah file ada di direktori yang ditentukan
+if os.path.exists(model_path):
+    try:
+        #muat model dari file pickle
+        with open(model_path, 'rb') as f:
+            loaded_model = pickle.load(f)
+           
+        rf_model = loaded_model[0]
+       
+        #bagian Streamlit App
+        st.title("Prediksi Diabetes")
+       
+        st.write("Aplikasi ini digunakan untuk membantu memprediksi penyakit diabetes pada seseorang")
+       
+        pregnancies = st.slider("Pregnancies", min_value=0, max_value=17, step=1)
+        glucose = st.slider("Glucose (mg/dL)", min_value=0.0, max_value=199.0, step=0.1)
+        bloodPressure = st.slider("Blood Pressure (mmHg)", min_value=0, max_value=122, step=2)
+        skinThickness =st.slider("Skin Thickness (mm)", min_value=0, max_value=99, step=2)
+        insulin = st.slider("Insulin (μU/mL)", min_value=0, max_value=846, step=10)
+        bmi = st.slider("BMI", min_value=0.0, max_value=67.1, step=0.1)
+        diabetesPedigreeFunction = st.slider("Diabetes Pedigree Function", min_value=0.07, max_value=2.42, step=0.1)
+        age = st.slider("Age", min_value=21, max_value=81, step=1)
+ 
+        #prediksi diabetes berdasarkan input
+       
+        input_data = [[pregnancies, glucose, bloodPressure, skinThickness, insulin, bmi,
+                       diabetesPedigreeFunction, age]]
+ 
+        if st.button("Prediksi!"):
+ 
+            rf_model_prediction = rf_model.predict(input_data)
+            outcome_names = {0: 'Tidak Diabetes', 1: 'Diabetes'}
+            st.write(f"Orang tersebut diprediksi **{outcome_names[rf_model_prediction[0]]}** oleh RF")
+       
+    except Exception as e:
+        st.error("Terjadi kesalahan: {e}")
+else:
+    print("File 'rf_diabetes_model.pkl' tidak ditemukan di direktori")
